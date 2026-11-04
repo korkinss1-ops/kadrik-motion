@@ -30,7 +30,7 @@ export function startStudio(project, { port = 4848, host = '127.0.0.1' } = {}) {
 
   const state = () => {
     const { html, token } = readSource(project);
-    return { name: project.root.split(sep).pop(), root: project.root, token, scan: scan(html), variables: readVariables(html), comments: comments(project), history: listHistory(project).length, render: renderJob };
+    return { locale: 'ru-RU', name: project.root.split(sep).pop(), root: project.root, token, scan: scan(html), variables: readVariables(html), comments: comments(project), history: listHistory(project).length, render: renderJob };
   };
 
   // Every distinct version of index.html we see is kept, whoever wrote it, so undo also covers agent edits.

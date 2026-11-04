@@ -35,7 +35,7 @@ iframe { display: block; border: 0; background: transparent; }
       super();
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${CSS}</style><div class="stage"><iframe allow="autoplay; fullscreen"></iframe></div><div class="cover"></div><div class="msg"></div>
-<div class="bar"><button class="pp" aria-label="play">` + `<svg viewBox="0 0 24 24">${PLAY}</svg></button><div class="track"><div class="fill"></div></div><span class="time">0:00.0</span><button class="snd" aria-label="sound"><svg viewBox="0 0 24 24">${SOUND}</svg></button></div>`;
+<div class="bar"><button class="pp" aria-label="Воспроизведение / пауза">` + `<svg viewBox="0 0 24 24">${PLAY}</svg></button><div class="track"><div class="fill"></div></div><span class="time">0:00.0</span><button class="snd" aria-label="Звук"><svg viewBox="0 0 24 24">${SOUND}</svg></button></div>`;
       this._stage = root.querySelector('.stage');
       this._frame = root.querySelector('iframe');
       this._msg = root.querySelector('.msg');
