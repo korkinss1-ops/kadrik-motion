@@ -86,7 +86,7 @@ What makes a score sound composed rather than generated:
 `om sound` fits the marks and tells you what it did:
 
 ```
-music    om-score "huashu-motion · Four Rooms" · 517 notes · PNO:piano MEL:strings … · ends 29.24s
+music    om-score "kadrik-motion · Four Rooms" · 517 notes · PNO:piano MEL:strings … · ends 29.24s
 fit      marks on the picture: rooms 5.45s · studio 13.00s · made 20.35s · logo 27.00s
 tempo    rooms→studio 127.4 bpm (-0.5%) · studio→made 122.7 bpm (-4.1%) · made→logo 128.9 bpm (+0.7%)
 ```

@@ -90,13 +90,13 @@ test('engine: elements added later are bound too (data-var-src, data-var-text)',
 const sigAt = async (film, t) => { await film.seek(t); return film.evaluate(`(() => { const s = document.getElementById('om-signature'), i = window.__omEngine.signature();
   return { on: i.on, why: i.why || null, corner: i.shown && i.shown.corner, clear: i.shown && i.shown.clear, display: s ? s.style.display : null, opacity: s ? Number(s.style.opacity) : 0, text: s ? s.textContent : '' }; })()`); };
 
-test('engine: a film of 4 s or more ends with "Made with huashu-motion" in a free corner, faded in over its last 1.2 s', { skip }, async () => {
+test('engine: a film of 4 s or more ends with "Made with kadrik-motion" in a free corner, faded in over its last 1.2 s', { skip }, async () => {
   const { index } = makeFilm({ video: false, sound: false, duration: 6 });
   const film = await openFilm(index, {});
   try {
     assert.equal((await sigAt(film, 3)).display, null, 'nothing before its window');
     const early = await sigAt(film, 4.85), end = await sigAt(film, 5.99);
-    assert.equal(end.text, 'Made with huashu-motion');
+    assert.equal(end.text, 'Made with kadrik-motion');
     assert.ok(early.opacity > 0 && early.opacity < end.opacity, `fades in: ${early.opacity} then ${end.opacity}`);
     assert.ok(Math.abs(end.opacity - 0.78) < 0.01);
     assert.equal(end.corner, 'bottom-right');

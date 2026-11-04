@@ -12,7 +12,7 @@
 CLIPS.y3_whiteboard = (() => {
 const { clamp, lerp } = U;
 const INK = '#0A0503', BOARD = '#FBFBFB';
-let ORANGE = '#EF7226', WASH = 'rgba(239,114,38,.22)';                  // huashu-motion: data.accent replaces the orange (set in init)
+let ORANGE = '#EF7226', WASH = 'rgba(239,114,38,.22)';                  // kadrik-motion: data.accent replaces the orange (set in init)
 const FONT = 'LXGWWenKai-500';
 // ---------- 手绘图标：单位框 [-0.5,0.5]²（y 朝下）里的笔画；o:1 = 橙色强调，seg:1 = 快速直线（网络连线），fill = 铺浅橙 ----------
 const A = (cx, cy, rx, ry, a0, a1, n = 22) => DG.arcPts(cx, cy, rx, ry, a0, a1, n);
@@ -160,7 +160,7 @@ return {
   fonts: [FONT],
   faces: [FONT],
   safe: true,
-  // huashu-motion: one scene label per thing written or drawn; regions = every item on the board
+  // kadrik-motion: one scene label per thing written or drawn; regions = every item on the board
   scenes: ctx => CLIP.beats(ctx.cues, q => ({ title: 'title', point: 'point', draw: 'draw', image: 'image', highlight: 'circle' })[q.kind] || null),
   regions: ctx => ctx.cues.filter(q => ['title', 'point', 'draw', 'image'].includes(q.kind)).map(q => ({ id: kindId(ctx, q),
     label: { title: '标题', point: `第 ${ctx.of('point').indexOf(q) + 1} 条要点`, draw: `第 ${ctx.of('draw').indexOf(q) + 1} 个手绘图标`, image: `第 ${ctx.of('image').indexOf(q) + 1} 张图` }[q.kind] })),

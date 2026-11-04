@@ -10,7 +10,7 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { N, RATE, env, mtof } from './dsp.js';
 
-export const packDir = () => process.env.OM_SAMPLES || join(homedir(), '.cache', 'huashu-motion', 'samples');
+export const packDir = () => process.env.OM_SAMPLES || join(homedir(), '.cache', 'kadrik-motion', 'samples');
 
 let pack;
 export function loadPack() {

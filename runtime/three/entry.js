@@ -1,4 +1,4 @@
-// The three.js bundle huashu-motion ships: build with `npx esbuild@0.25 entry.js --bundle --minify --format=iife --legal-comments=none --outfile=three.min.js`
+// The three.js bundle kadrik-motion ships: build with `npx esbuild@0.25 entry.js --bundle --minify --format=iife --legal-comments=none --outfile=three.min.js`
 // from a three@0.186.1 package unpacked next to it (`npm pack three@0.186.1 && tar xzf three-*.tgz`).
 import * as THREE from './package/build/three.module.js';
 import { RoomEnvironment } from './package/examples/jsm/environments/RoomEnvironment.js';

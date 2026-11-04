@@ -8,7 +8,7 @@ import zlib from 'node:zlib';
 import { OmError, readSource, scan } from './project.js';
 
 const PKG = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-export const REPO_URL = 'https://github.com/alchaincyf/huashu-motion';
+export const REPO_URL = 'https://github.com/korkinss1-ops/kadrik-motion';
 const SKILL = REPO_URL.replace(/^https:\/\/github\.com\//, '');
 
 // ---------- what ships ----------
@@ -78,13 +78,13 @@ export function zip(entries) {
 
 // ---------- title and blurb ----------
 // gallery.json (or a template's template.json) may give { title, description|summary }, each either a
-// string or { en, zh }. Otherwise the <title> of index.html, minus an "huashu-motion ·" prefix.
+// string or { en, zh }. Otherwise the <title> of index.html, minus an "kadrik-motion ·" prefix.
 const decode = (s) => s.replace(/&(amp|lt|gt|quot|#39);/g, (_, e) => ({ amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'" })[e]);
 export function readMeta(root, html) {
   let meta = {};
   for (const f of ['template.json', 'gallery.json']) { try { meta = { ...meta, ...JSON.parse(readFileSync(join(root, f), 'utf8')) }; } catch {} }
   const doc = /<title>([^<]*)<\/title>/i.exec(html)?.[1];
-  const fromDoc = doc && decode(doc).replace(/^\s*huashu-motion\s*[·|:—–-]\s*/i, '').trim();
+  const fromDoc = doc && decode(doc).replace(/^\s*kadrik-motion\s*[·|:—–-]\s*/i, '').trim();
   return { title: meta.title || fromDoc || basename(root), description: meta.description || meta.summary || '' };
 }
 
@@ -141,10 +141,10 @@ export function sharePage({ title, description, name, width, height, duration, b
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(plain)} · huashu-motion</title>
+<title>${esc(plain)} · kadrik-motion</title>
 <meta name="description" content="${esc(pick(description, 'en'))}">
 <meta property="og:title" content="${esc(plain)}">
-<meta property="og:description" content="${esc(pick(description, 'en') || 'Made with huashu-motion')}">
+<meta property="og:description" content="${esc(pick(description, 'en') || 'Made with kadrik-motion')}">
 <meta name="theme-color" content="#11100e">
 <script>try { document.documentElement.dataset.lang = localStorage.getItem('om-lang') || ((navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en'); } catch { document.documentElement.dataset.lang = (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en'; }</script>
 <style>
@@ -248,7 +248,7 @@ footer a:hover { color: var(--ink); }
 </head>
 <body>
 <header class="top">
-  <div class="nav"><a class="brand" href="${REPO_URL}"><span class="logo" aria-hidden="true"></span>huashu-motion</a>${back ? `<a class="back" href="${esc(back)}"><span data-l="en">All works</span><span data-l="zh">全部作品</span></a>` : ''}</div>
+  <div class="nav"><a class="brand" href="${REPO_URL}"><span class="logo" aria-hidden="true"></span>kadrik-motion</a>${back ? `<a class="back" href="${esc(back)}"><span data-l="en">All works</span><span data-l="zh">全部作品</span></a>` : ''}</div>
   <div class="lang" role="group" aria-label="Language"><button data-set="en">EN</button><button data-set="zh">中文</button></div>
 </header>
 
@@ -282,13 +282,13 @@ footer a:hover { color: var(--ink); }
   <p class="lead"><span data-l="en">It's code, not pixels. Paste this into Claude Code, Codex, Cursor or any coding agent, then point at the frame to change it.</span><span data-l="zh">它是代码，不是像素。把下面这段贴给 Claude Code、Codex、Cursor 或任何编程 Agent，然后指着画面改。</span></p>
   <div class="label"><span data-l="en">Prompt</span><span data-l="zh">提示词</span></div>
   <div class="code prompt"><pre id="prompt"></pre><button class="copy" data-copy="prompt"></button></div>
-  <div class="label"><span data-l="en">First time with huashu-motion</span><span data-l="zh">第一次用 huashu-motion</span></div>
+  <div class="label"><span data-l="en">First time with kadrik-motion</span><span data-l="zh">第一次用 kadrik-motion</span></div>
   <div class="code cmd"><pre id="skill">npx skills add ${esc(SKILL)}</pre><button class="copy" data-copy="skill"></button></div>
-  <div class="code cmd"><pre id="demo">npx huashu-motion demo</pre><button class="copy" data-copy="demo"></button></div>
+  <div class="code cmd"><pre id="demo">npx github:korkinss1-ops/kadrik-motion demo</pre><button class="copy" data-copy="demo"></button></div>
   <div class="dl"><span><span data-l="en">The whole project, ready for <code>om studio</code></span><span data-l="zh">完整工程，解压即可 <code>om studio</code></span></span><a href="source.zip" download>source.zip ↓</a></div>
 </div>
 
-<footer>made with <a href="${REPO_URL}">huashu-motion</a></footer>
+<footer>made with <a href="${REPO_URL}">kadrik-motion</a></footer>
 
 <script type="application/json" id="om-share">${json(data)}</script>
 <script>
@@ -297,8 +297,8 @@ footer a:hover { color: var(--ink); }
   const $ = (id) => document.getElementById(id);
   const root = document.documentElement, player = $('player'), sheet = $('sheet'), remix = $('remix'), stage = $('stage');
   const T = {
-    en: { copy: 'Copy', copied: 'Copied', prompt: (t, url) => 'Remix this film with huashu-motion: "' + t + '".\\nSource: ' + url + ' (download and unzip it, then run \`npx huashu-motion studio ' + D.name + '\` so I can watch and point at the frame while you work).\\nKeep what works, and change it to: ' },
-    zh: { copy: '复制', copied: '已复制', prompt: (t, url) => '用 huashu-motion 复刻这部片：《' + t + '》。\\n源码：' + url + '（下载解压后运行 \`npx huashu-motion studio ' + D.name + '\`，我边看边指着画面改）。\\n保留好的部分，把它改成：' },
+    en: { copy: 'Copy', copied: 'Copied', prompt: (t, url) => 'Remix this film with kadrik-motion: "' + t + '".\\nSource: ' + url + ' (download and unzip it, then run \`npx github:korkinss1-ops/kadrik-motion studio ' + D.name + '\` so I can watch and point at the frame while you work).\\nKeep what works, and change it to: ' },
+    zh: { copy: '复制', copied: '已复制', prompt: (t, url) => '用 kadrik-motion 复刻这部片：《' + t + '》。\\n源码：' + url + '（下载解压后运行 \`npx github:korkinss1-ops/kadrik-motion studio ' + D.name + '\`，我边看边指着画面改）。\\n保留好的部分，把它改成：' },
   };
   const store = (k, v) => { try { return v === undefined ? localStorage.getItem(k) : localStorage.setItem(k, v); } catch { return null; } };
   const setLang = (l) => {

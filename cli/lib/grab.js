@@ -49,7 +49,7 @@ function writeMd(root, source) {
 }
 
 function curl(url, file, referer) {
-  const r = spawnSync('curl', ['-sSL', '--max-time', '40', '--max-filesize', String(30 << 20), '-A', 'Mozilla/5.0 (huashu-motion om grab)', ...(referer ? ['-e', referer] : []), '-o', file, url], { encoding: 'utf8' });
+  const r = spawnSync('curl', ['-sSL', '--max-time', '40', '--max-filesize', String(30 << 20), '-A', 'Mozilla/5.0 (kadrik-motion om grab)', ...(referer ? ['-e', referer] : []), '-o', file, url], { encoding: 'utf8' });
   return r.status === 0 && existsSync(file) && statSync(file).size > 200;
 }
 

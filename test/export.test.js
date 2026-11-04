@@ -13,7 +13,7 @@ const tmp = () => mkdtempSync(join(tmpdir(), 'om-export-'));
 
 const HTML = `<!doctype html>
 <html lang="en"><head>
-<meta charset="utf-8"><title>huashu-motion · Q3 &amp; more</title>
+<meta charset="utf-8"><title>kadrik-motion · Q3 &amp; more</title>
 <script src="vendor/gsap.min.js"></script>
 </head><body><header>not the head</header>
 <div data-composition-id="root" data-width="1080" data-height="1920" data-duration="4"><h1>hi</h1></div>
@@ -114,7 +114,7 @@ test('export writes every file, injects the runtime into the copy only, and zips
   assert.ok(page.includes('href="source.zip" download'));
   assert.ok(page.includes('--ar: 1080 / 1920'), 'aspect ratio comes from the composition');
   assert.ok(page.includes('Q3 &amp; more') && page.includes('one line'));
-  assert.ok(page.includes('npx huashu-motion demo'));
+  assert.ok(page.includes('npx github:korkinss1-ops/kadrik-motion demo'));
   for (const [, code] of page.matchAll(/<script>([\s\S]*?)<\/script>/g)) new Function(code); // the inline scripts parse
 });
 

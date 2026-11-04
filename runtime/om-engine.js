@@ -1,9 +1,9 @@
-// huashu-motion engine — the page side of rendering. The renderer injects this file before the
+// kadrik-motion engine — the page side of rendering. The renderer injects this file before the
 // composition's own scripts run (Page.addScriptToEvaluateOnNewDocument); the composition never
 // references it; the studio and exported pages inject it the same way. One engine serves rendering,
 // screenshots and the preview (window.__omConfig.video === 'live', driven by runtime/om-player.js).
 //
-// What it provides, from the composition contract (skills/huashu-motion/references/contract.md):
+// What it provides, from the composition contract (skills/kadrik-motion/references/contract.md):
 //   window.__timelines           registry of paused GSAP timelines (created here if missing)
 //   OM.vars()                    the variables — defaults from <html data-composition-variables>, overridden by
 //                                window.__omVariables, typed as declared (window.__hyperframes.getVariables(): older alias)
@@ -173,7 +173,7 @@
   }
 
   // ---------- signature ----------
-  // "Made with huashu-motion" in a corner for the last SIG_SHOW seconds, so a film that travels says where it came from.
+  // "Made with kadrik-motion" in a corner for the last SIG_SHOW seconds, so a film that travels says where it came from.
   // It is part of the picture everywhere the engine runs (render, still, check, studio, share page), drawn in the film's
   // own typeface and text colour, in the first corner where it covers no text or picture. A pure function of t and the
   // page at t, like everything else. Off with data-om-signature="off" on <html> or the root; a corner name pins it
@@ -270,7 +270,7 @@
       sig = document.createElement('div');
       sig.id = 'om-signature';
       sig.setAttribute('aria-hidden', 'true');
-      sig.innerHTML = 'Made with <b>huashu-motion</b>';
+      sig.innerHTML = 'Made with <b>kadrik-motion</b>';
       document.body.appendChild(sig);
     }
     const rs = getComputedStyle(r);

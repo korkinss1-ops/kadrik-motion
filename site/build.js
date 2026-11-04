@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// node site/build.js → site/dist/: the huashu-motion gallery. Every example and template becomes a share page
+// node site/build.js → site/dist/: the kadrik-motion gallery. Every example and template becomes a share page
 // (the same output as `om export html`), and the front page lists them as cards that play on hover.
 // Static, local-only: no outside fonts, scripts or requests. Titles and blurbs come from site/works.json,
 // then a project's gallery.json / template.json, then its <title>.
@@ -101,9 +101,9 @@ function page(works) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>huashu-motion — motion graphics made by your coding agent</title>
+<title>kadrik-motion — motion graphics made by your coding agent</title>
 <meta name="description" content="Motion graphics made by your coding agent. Point at the frame to change it. Open source, runs locally, works with Claude Code, Codex, Cursor and Gemini CLI.">
-<meta property="og:title" content="huashu-motion">
+<meta property="og:title" content="kadrik-motion">
 <meta property="og:description" content="Motion graphics made by your coding agent. Point at the frame to change it.">
 <meta name="theme-color" content="#f6f5f2">
 <script>(() => { let l; try { l = localStorage.getItem('om-lang'); } catch {} document.documentElement.dataset.lang = l || ((navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en'); })();</script>
@@ -267,7 +267,7 @@ footer a { text-decoration: none; color: var(--ink-2); } footer a:hover { color:
 <body>
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="logo" aria-hidden="true"></span>huashu-motion</a>
+    <a class="brand" href="#top"><span class="logo" aria-hidden="true"></span>kadrik-motion</a>
     <nav class="links">
       <a href="#how">${t('How it works', '怎么用')}</a>
       <a href="#works">${t('Works', '作品')}</a>
@@ -285,7 +285,7 @@ footer a { text-decoration: none; color: var(--ink-2); } footer a:hover { color:
       <h1><span class="main">${t('Motion graphics made by your coding agent.', '让你自己的 Agent 做动画，')}</span> <span class="soft">${t('Point at the frame to change it.', '指着画面改。')}</span></h1>
       <p class="lede">${t('Your agent writes the film as code and opens the studio. You click the frame where something’s off and say what you want. It edits the source; the preview reloads on the same frame.', 'Agent 把片子写成代码，打开编辑器。你在画面上哪里不满意就点哪里，说一句想要什么。它改源码，预览停在原处刷新。')}</p>
       <div class="cta">
-        <div class="cmd"><span class="p">$</span><code id="c-hero">npx huashu-motion demo</code>${copyBtn('c-hero')}</div>
+        <div class="cmd"><span class="p">$</span><code id="c-hero">npx github:korkinss1-ops/kadrik-motion demo</code>${copyBtn('c-hero')}</div>
         <a class="ghost" href="#works">${t('See the works', '看作品')} <span aria-hidden="true">↓</span></a>
       </div>
       <figure class="showcase" style="--ar: ${hero.width} / ${hero.height}; margin-inline: auto; max-width: var(--wrap)">
@@ -305,7 +305,7 @@ footer a { text-decoration: none; color: var(--ink-2); } footer a:hover { color:
       </div>
       <div class="steps">
         <div class="step"><span class="n">01</span><h3>${t('Ask your agent', '跟 Agent 说一句')}</h3><p>${t('Describe the film. Hand it the data if there is some.', '说清楚要什么片子，有数据就把数据给它。')}</p>
-          <div class="say"><div>${t('“Make a 30-second explainer about why our signup rate doubled, using data/funnel.csv. Use huashu-motion.”', '「用 huashu-motion 把 data/funnel.csv 做成 30 秒解说，讲清楚注册率为什么翻倍。」')}</div></div></div>
+          <div class="say"><div>${t('“Make a 30-second explainer about why our signup rate doubled, using data/funnel.csv. Use kadrik-motion.”', '「用 kadrik-motion 把 data/funnel.csv 做成 30 秒解说，讲清楚注册率为什么翻倍。」')}</div></div></div>
         <div class="step"><span class="n">02</span><h3>${t('It writes the film as code', '它把片子写成代码')}</h3><p>${t('Then opens the studio and waits. Titles, numbers, colours and timings show up as fields you can edit yourself.', '然后打开编辑器等你。标题、数字、颜色、时长都变成右侧的字段，你可以直接改。')}</p>
           <div class="say"><div class="mono">om studio my-film</div></div></div>
         <div class="step"><span class="n">03</span><h3>${t('Point at the frame', '指着画面改')}</h3><p>${t('Press C, click where something’s off, type what you want. Every version is kept; ⌘Z undoes.', '按 C，点画面上不对的地方，写一句话。每个版本都留着，⌘Z 随时撤回。')}</p>
@@ -335,7 +335,7 @@ footer a { text-decoration: none; color: var(--ink-2); } footer a:hover { color:
         <div class="cmdcard"><h3>${t('Give your agent the skill', '给你的 Agent 装上 skill')}</h3><p>${t('Claude Code, Codex, Cursor, Gemini CLI and more.', 'Claude Code、Codex、Cursor、Gemini CLI 等都能用。')}</p>
           <div class="line"><span class="p">$</span><code id="c-skill">npx skills add ${esc(SKILL)}</code>${copyBtn('c-skill')}</div></div>
         <div class="cmdcard"><h3>${t('Or watch the demo first', '或者先看演示')}</h3><p>${t('Opens the showcase film in the studio. No renderer download.', '在编辑器里打开示例片，不需要下载渲染器。')}</p>
-          <div class="line"><span class="p">$</span><code id="c-demo">npx huashu-motion demo</code>${copyBtn('c-demo')}</div></div>
+          <div class="line"><span class="p">$</span><code id="c-demo">npx github:korkinss1-ops/kadrik-motion demo</code>${copyBtn('c-demo')}</div></div>
       </div>
       <p class="req">${t('Needs Node 22+. Exporting MP4 also needs FFmpeg; the first export downloads the renderer.', '需要 Node 22 及以上。导出 MP4 还需要 FFmpeg，第一次导出会下载渲染器。')}</p>
     </div>
@@ -344,8 +344,8 @@ footer a { text-decoration: none; color: var(--ink-2); } footer a:hover { color:
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top"><span class="logo" aria-hidden="true"></span>huashu-motion</a>
-    <span>${t('MIT licensed. Made with huashu-motion.', 'MIT 开源。本站的片子都用 huashu-motion 做。')}</span>
+    <a class="brand" href="#top"><span class="logo" aria-hidden="true"></span>kadrik-motion</a>
+    <span>${t('MIT licensed. Made with kadrik-motion.', 'MIT 开源。本站的片子都用 kadrik-motion 做。')}</span>
     <nav><a href="${REPO_URL}">GitHub</a><a href="${REPO_URL}/blob/main/docs/CONTRACT.md">${t('The contract', '工程契约')}</a><a href="${REPO_URL}/blob/main/THIRD_PARTY.md">${t('Licenses', '许可')}</a></nav>
   </div>
 </footer>

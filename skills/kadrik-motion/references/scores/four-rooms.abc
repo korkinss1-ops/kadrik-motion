@@ -1,4 +1,4 @@
-% CASE · Four Rooms — a score fitted to an existing 29.6 s film (huashu-motion's own promo, 128 bpm, D major)
+% CASE · Four Rooms — a score fitted to an existing 29.6 s film (kadrik-motion's own promo, 128 bpm, D major)
 % Spotting: the film has seven scenes; the score hits only the four that matter and lets the other cuts
 % flow over the music — rooms (5.45 s, label), studio (13.0 s, label), made (20.35 s, the impact
 % triplet) and logo (27.0 s, the chime), the last two given by OM.music({ marks: { made: 20.35, logo: 27 } }).
@@ -13,7 +13,7 @@
 % bars 15–16 end → logo: a pluck arpeggio under the logo assembling, piano pickup A–D–E landing on F#
 %           with the chime, everything held.
 X:1
-T:huashu-motion · Four Rooms
+T:kadrik-motion · Four Rooms
 M:4/4
 L:1/8
 Q:1/4=128

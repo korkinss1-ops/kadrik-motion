@@ -40,7 +40,7 @@ return {
   fonts: ['PuHui-Medium', 'PuHui-Bold'],
   faces: ['PuHui-Medium', 'PuHui-Bold', 'Inter'],
   safe: true,
-  // huashu-motion: one scene label per screen (grouped like init() groups the slides), and what a viewer can point at
+  // kadrik-motion: one scene label per screen (grouped like init() groups the slides), and what a viewer can point at
   scenes(ctx) {
     const out = [], n = {}; let run = 0;
     const add = (b, at) => { n[b] = (n[b] || 0) + 1; out.push({ id: b === 'title' && n[b] === 1 ? 'title' : `${b}-${n[b]}`, at }); };

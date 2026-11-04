@@ -1,14 +1,14 @@
 ---
-name: huashu-motion
+name: kadrik-motion
 description: Режиссура, создание и монтаж редактируемых промороликов с музыкой; русский интерфейс Studio.
 metadata:
-  author: Huashu (花叔)
-  repository: https://github.com/korkinss1-ops/huashu-motion-ru
+  author: korkinss1-ops
+  repository: https://github.com/korkinss1-ops/kadrik-motion
   upstream: https://github.com/alchaincyf/huashu-motion
   version: 0.3.1
 ---
 
-# huashu-motion — инструкция на русском
+# kadrik-motion — инструкция на русском
 
 Это русскоязычное руководство к неофициальному форку. Полная исходная инструкция автора сохранена в [SKILL.md](SKILL.md); подробные справочники в references/ остаются оригинальными. При уточнении технического контракта используй также [contract.md](references/contract.md).
 
@@ -64,10 +64,10 @@ metadata:
 - Анимируй transforms, не left/top/width/height. Исключения для намеренных пересечений помечай `data-layout-allow-*` и проверяй глазами.
 - Все шрифты/библиотеки/материалы локальные. Для случайности используй OM.random(seed), для canvas — OM.clock, для камеры — OM.camera/OM.space, когда она соответствует заданию.
 - Фиксируй data-duration только при фиксированной длительности поставки; иначе timeline определяет конец и редактируемое удержание.
-- Фильм длительнее4сек заканчивается маленькой подписью Made with huashu-motion на последних1,2сек в свободном углу, шрифтом и цветом фильма. Отключай data-om-signature="off" по просьбе пользователя или при оплаченной клиентской работе от лица заказчика. Оверлеи подписи не содержат. При передаче упомяни её и возможность отключения.
+- Фильм длительнее4сек заканчивается маленькой подписью Made with kadrik-motion на последних1,2сек в свободном углу, шрифтом и цветом фильма. Отключай data-om-signature="off" по просьбе пользователя или при оплаченной клиентской работе от лица заказчика. Оверлеи подписи не содержат. При передаче упомяни её и возможность отключения.
 
 ## Справочники и обновления
 
 Для демонстрации продукта — [product-demo-continuity.md](references/product-demo-continuity.md); для звука — [sound.md](references/sound.md) и [music.md](references/music.md); для качества — [craft.md](references/craft.md) и [visual-direction.md](references/visual-direction.md).
 
-Оригинальная инструкция содержит правила необязательной проверки версий upstream и сведения об авторе. Не обновляй установленный навык автоматически. Автор исходного huashu-motion — Huashu (花叔); русский форк сохраняет его лицензию и авторство.
+Происхождение кода и уведомления сохранены в LICENSE и docs/ORIGIN.md. Личная реклама и автоматические рекомендации автора удалены. Установленный инструмент автоматически не обновляется.

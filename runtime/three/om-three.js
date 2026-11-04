@@ -1,4 +1,4 @@
-/* huashu-motion · Three.js helpers (window.OM3). Needs vendor/three.min.js (window.THREE) and vendor/om.js. MIT.
+/* kadrik-motion · Three.js helpers (window.OM3). Needs vendor/three.min.js (window.THREE) and vendor/om.js. MIT.
  * A lit studio, the product's real things in it (its logo SVG extruded, its screenshots on a device or a
  * card, its GLB), and a render that follows OM.space. Everything waits for its files through OM.ready, so
  * no frame is taken before a texture or a model has arrived. */
@@ -24,7 +24,7 @@
     const x = new XMLHttpRequest();
     x.open('GET', url);
     x.responseType = type;
-    const fail = () => no(new Error(`huashu-motion: could not read ${url}`));
+    const fail = () => no(new Error(`kadrik-motion: could not read ${url}`));
     x.onload = () => ((x.status === 0 || x.status < 300) && x.response != null ? ok(x.response) : fail());
     x.onerror = fail;
     x.send();
@@ -144,7 +144,7 @@
     const tex = new THREE.TextureLoader().load(url, (t) => done(t), undefined, () => done(null));
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.anisotropy = 8;
-    ready(p.then((t) => { if (!t) throw new Error(`huashu-motion: could not load ${url}`); }));
+    ready(p.then((t) => { if (!t) throw new Error(`kadrik-motion: could not load ${url}`); }));
     tex.loaded = p;
     return tex;
   };
@@ -165,7 +165,7 @@
         for (const sh of shapes) for (const pt of sh.getPoints()) { y0 = Math.min(y0, pt.y); y1 = Math.max(y1, pt.y); }
         if (shapes.length) parts.push([shapes, path.color]);
       }
-      if (!parts.length) throw new Error('huashu-motion: OM3.logo — the SVG has no filled paths');
+      if (!parts.length) throw new Error('kadrik-motion: OM3.logo — the SVG has no filled paths');
       // depth and bevel are in scene units: build in SVG units divided by the scale, then scale evenly
       const s = (o.size || 2) / Math.max(1e-6, y1 - y0), bevel = o.bevel ?? 0.03;
       for (const [shapes, color] of parts) {

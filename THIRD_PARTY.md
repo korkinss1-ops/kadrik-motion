@@ -1,6 +1,10 @@
+# Кадрик — лицензии компонентов
+
+Основан на huashu-motion, Copyright (c)2026 Huashu; см. LICENSE и docs/ORIGIN.md.
+
 # Third-party components
 
-huashu-motion's own code and docs are MIT. These bundled pieces keep their own licenses:
+The project's own code and docs are MIT. These bundled pieces keep their own licenses:
 
 | Component | Where | License |
 |---|---|---|

@@ -1,4 +1,4 @@
-// om render: the film as a video file, through the huashu-motion renderer (render-om.js). Output always
+// om render: the film as a video file, through the kadrik-motion renderer (render-om.js). Output always
 // lands in <project>/out/ with a new name — a render never overwrites a file the user may already have shared.
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs';

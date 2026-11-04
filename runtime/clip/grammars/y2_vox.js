@@ -15,7 +15,7 @@ return {
   fonts: ['PuHui-Heavy', 'PuHui-Bold'],
   faces: ['PuHui-Heavy', 'PuHui-Bold'],
   safe: true,
-  // huashu-motion: one scene per thing put on the desk (and per highlight); regions = what a viewer can point at
+  // kadrik-motion: one scene per thing put on the desk (and per highlight); regions = what a viewer can point at
   scenes: ctx => CLIP.beats(ctx.cues, q => q.kind === 'title' ? 'title' : ['image', 'clip'].includes(q.kind) ? 'image' : q.kind === 'point' ? 'note' : q.kind === 'highlight' ? 'highlight' : null),
   regions: ctx => [...ctx.of('title').map((q, i) => ({ id: i ? CLIP.rid('title', i) : 'title', label: i ? `第 ${i + 1} 条标题` : '标题条' })),
     ...ctx.of('image', 'clip').map((q, i) => ({ id: CLIP.rid('image', i), label: `第 ${i + 1} 张图` })),
@@ -23,7 +23,7 @@ return {
     ...ctx.of('highlight').map((q, i) => ({ id: CLIP.rid('highlight', i), label: '荧光笔＋红圈' }))],
   init(ctx) {
     const { W, H, u, portrait } = ctx, r = rng(7), g = document.createElement('canvas').getContext('2d');
-    C.red = ctx.data.accent || '#b8433f';                                  // huashu-motion: data.accent recolours the red string and circles
+    C.red = ctx.data.accent || '#b8433f';                                  // kadrik-motion: data.accent recolours the red string and circles
     items = []; let cur = 0, prev = null;
     for (const q of ctx.of('image', 'clip', 'title', 'point')) {
       let w, h, kind = q.kind === 'clip' ? 'image' : q.kind, lines = null, size = 0;

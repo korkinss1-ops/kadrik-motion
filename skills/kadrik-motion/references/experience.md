@@ -117,7 +117,7 @@ Older project-specific notes (3D city film, web-product promo) are kept by the m
 ## 2026-10-09 | Studio state vs. source
 
 - Finding: a value typed into an editor field, a preview override and the source default are three different states. Exporting after only typing can render the old value.
-- Do: in huashu-motion every edit is written into `index.html` immediately (variables) and the preview reloads from the file, so preview and export always match. Do not keep values in browser-only state.
+- Do: in kadrik-motion every edit is written into `index.html` immediately (variables) and the preview reloads from the file, so preview and export always match. Do not keep values in browser-only state.
 - Confidence: verified in the studio end-to-end tests.
 
 ## 2026-10-17 | Motion blur ghosts on fast moves
@@ -152,7 +152,7 @@ Older project-specific notes (3D city film, web-product promo) are kept by the m
 
 - Finding: a `<video>` with `data-start` but no `id` renders frozen. Clips play a window with `data-start`, `data-duration` and `data-media-start`; animate a wrapper, not the video (the renderer forces the clip's opacity).
 - Do: `<div class="tile"><video id="v0" data-start="20.3" data-duration="5.2" data-media-start="5.8" data-track-index="1" muted playsinline src="…"></video></div>`, and tween `.tile`.
-- Evidence: the huashu-motion promo film, three of our own films playing as tiles.
+- Evidence: the kadrik-motion promo film, three of our own films playing as tiles.
 - Confidence: verified in the render.
 
 ## 2026-10-17 | The soundtrack sets the film's length

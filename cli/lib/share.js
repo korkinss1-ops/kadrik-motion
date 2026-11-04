@@ -84,13 +84,13 @@ export function share(project, { from = 0, to = null, video = null } = {}) {
 <!-- agent: write 2–3 sentences in the user's language: what the film is about and one concrete detail of how it was made
 (the one-line request, a note given in the studio, the music it composed). Keep the last line as it is. -->
 
-Made with huashu-motion · ${REPO_URL} #huashumotion
+Made with kadrik-motion · ${REPO_URL} #kadrikmotion
 
 ## README 头图 · README header
 
 \`\`\`html
 <a href="${REPO_URL}"><img src="${rel(gif)}" alt="" width="100%"></a>
-<sub>Made with <a href="${REPO_URL}">huashu-motion</a></sub>
+<sub>Made with <a href="${REPO_URL}">kadrik-motion</a></sub>
 \`\`\`
 `;
   const mdFile = join(dir, 'share.md');

@@ -17,7 +17,7 @@ return {
   fonts: ['PuHui-Heavy', 'PuHui-Medium'],
   faces: ['PuHui-Heavy', 'PuHui-Medium'],
   safe: true,
-  // huashu-motion: scenes = title, each layer's first satellite, each push-in (focus) and each dive; regions = what a viewer can point at
+  // kadrik-motion: scenes = title, each layer's first satellite, each push-in (focus) and each dive; regions = what a viewer can point at
   scenes(ctx) { let fresh = true; return CLIP.beats(ctx.cues, q => { if (q.kind === 'enter') { fresh = true; return 'dive'; }
     if (q.kind === 'point') { const b = fresh ? 'layer' : null; fresh = false; return b; } return q.kind === 'title' ? 'title' : q.kind === 'highlight' ? 'focus' : null; }); },
   regions: ctx => [...(ctx.of('title').length ? [{ id: 'title', label: '标题' }] : []), { id: 'planet', label: '中心星球' },
@@ -30,7 +30,7 @@ return {
     S = { cx, cy, R, stars: Array.from({ length: 160 }, () => ({ x: r() * W * 1.4 - W * 0.2, y: r() * H * 1.4 - H * 0.2, r: (0.8 + r() * r() * 3) * u, ph: r() * 6.28, sp: 1 + r() * 2.5 })),
       motes: Array.from({ length: 24 }, () => ({ x: r() * W, y: r() * H, ph: r() * 6.28, d: 0.8 + r() * 0.5, s: (2 + r() * 3) * u })) };
     // 分层：enter 把后面的 point 放进新的一层
-    levels = [{ start: 0, center: ctx.data.center || '', col: ctx.data.planetColor || P.planet, pts: [], hls: [] }];   // huashu-motion: data.planetColor
+    levels = [{ start: 0, center: ctx.data.center || '', col: ctx.data.planetColor || P.planet, pts: [], hls: [] }];   // kadrik-motion: data.planetColor
     for (const q of ctx.cues) {
       const L = levels[levels.length - 1];
       if (q.kind === 'point') L.pts.push(q);

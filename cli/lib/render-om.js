@@ -1,4 +1,4 @@
-// The huashu-motion renderer: Chrome loads the film, we seek to each frame time, take a picture and
+// The kadrik-motion renderer: Chrome loads the film, we seek to each frame time, take a picture and
 // stream it into ffmpeg; the soundtrack is put under the picture as it is. Any page error, missing
 // frame or timeout stops the render with a non-zero exit — a film is never delivered from a run that
 // did not go clean.
@@ -88,7 +88,7 @@ export async function renderOm(project, { fps, out, format = 'mp4', transparent 
   }
   const film = films[0];
   const sig = await film.evaluate('window.__omEngine.signature()').catch(() => null);
-  if (sig) onNote(sig.on ? `signature on: "Made with huashu-motion" in a free corner for the last 1.2s (data-om-signature="off" on the root removes it)` : `signature off (${sig.why})`);
+  if (sig) onNote(sig.on ? `signature on: "Made with kadrik-motion" in a free corner for the last 1.2s (data-om-signature="off" on the root removes it)` : `signature off (${sig.why})`);
   const tmp = mkdtempSync(join(tmpdir(), 'om-render-'));
   const forgetTmp = cleanupOnInterrupt(() => rmSync(tmp, { recursive: true, force: true }));
   const picture = join(tmp, format === 'gif' ? 'picture.mp4' : `picture.${format}`);

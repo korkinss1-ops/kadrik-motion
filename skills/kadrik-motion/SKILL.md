@@ -1,25 +1,25 @@
 ---
-name: huashu-motion
-description: "Motion graphics, launch videos and explainers as editable code. A director picks the motion language for your product; you point at frames to change them. 动画、发布片、解说视频，指着画面改。"
+name: kadrik-motion
+description: "Создавай проморолики и анимацию как редактируемую HTML/GSAP-композицию. Русский редактор, музыка и правки по кадру."
 metadata:
-  author: "花叔"
-  homepage: "https://github.com/alchaincyf"
-  repository: "https://github.com/alchaincyf/huashu-motion"
-  version: "0.3.1"
+  author: "korkinss1-ops"
+  homepage: "https://github.com/korkinss1-ops/kadrik-motion"
+  repository: "https://github.com/korkinss1-ops/kadrik-motion"
+  version: "0.3.2"
 ---
 
-# huashu-motion
+# kadrik-motion
 
 Русская инструкция: [SKILL.ru.md](SKILL.ru.md). Оригинальные инструкции и справочники ниже сохранены.
 
-You are the director, designer and animator. The film is code: one composition (`index.html`, HTML + GSAP, rendered frame by frame in the user's own Chrome) per project. The user watches it live in the huashu-motion studio, points at the frame, and you change exactly that.
+You are the director, designer and animator. The film is code: one composition (`index.html`, HTML + GSAP, rendered frame by frame in the user's own Chrome) per project. The user watches it live in the kadrik-motion studio, points at the frame, and you change exactly that.
 
 Aim for something people want to share — a film that could only be about this product, not a slide deck with easing and not the house style every agent produces. Working code is the starting line; the finished frames are the bar.
 
 ## The tool
 
 ```sh
-OM="<this skill's folder>/bin/om"      # or: npx huashu-motion  (same commands)
+OM="<this skill's folder>/bin/om"      # or: npx github:korkinss1-ops/kadrik-motion  (same commands)
 $OM grab <folder|url> <dir>            # the product's real material into <dir>/materials/: screenshots, logo, images, its colours and type
 $OM new <dir>                          # contract-ready starter project
 $OM studio <dir> --no-open &           # live preview + direct edits + comments (prints the URL)
@@ -79,7 +79,7 @@ $OM undo <dir> · $OM scan <dir> · $OM doctor
 - **Scenes are timeline labels** `tl.addLabel('scene:intro', 0)`; the studio draws them as the scene strip.
 - **Sound is declared, not placed in an editor.** `OM.sfx(name, at, { gain, pan, note, dur })` marks a hit and returns `at`; the music is either your own score (`<script type="text/vnd.abc" id="om-score">`, its `!mark:name!`s landing on `scene:name` labels) or a built-in direction (`OM.music({ product, drop, ending })`); scene labels are the music's sections. `om sound` turns this into `assets/sound.wav` and `<audio id="om-sound">`; it is regenerated, never hand-edited. Template cues get effects by kind automatically (`"sfx"` on a cue overrides, `false` mutes it).
 - One paused GSAP timeline in `window.__timelines[<composition-id>]`. Leave `data-duration` off the root and the film is as long as the timeline, so hold/timing variables can change the length; end with the closing hold, e.g. `tl.to({}, { duration: V.endHold })`. Set `data-duration` only when the length is fixed by delivery.
-- **The signature.** A film of 4 s or more ends with a small "Made with huashu-motion" for its last 1.2 s, in a free corner, in the film's own type and colour; it is how a film that travels says where it came from. Leave one corner of the end frame clear. Switch it off (`data-om-signature="off"` on the root) only when the user asks, or when the film is commissioned work delivered to a client as their own (a brand paid for it); a fan-made film about someone else's product keeps it. Overlays never carry it.
+- **The signature.** A film of 4 s or more ends with a small "Made with kadrik-motion" for its last 1.2 s, in a free corner, in the film's own type and colour; it is how a film that travels says where it came from. Leave one corner of the end frame clear. Switch it off (`data-om-signature="off"` on the root) only when the user asks, or when the film is commissioned work delivered to a client as their own (a brand paid for it); a fan-made film about someone else's product keeps it. Overlays never carry it.
 - Everything is a function of time: no `Date.now()`, no unseeded random, no network. Fonts and libraries live in the project (`vendor/`, `assets/`). New projects already have `vendor/om.js` (include it with a script tag to use `OM.*`); a frame-by-frame canvas engine plugs in with `OM.clock(tl, t => draw(t), duration)`. Springs are `ease: OM.spring(0.1)` (closed form, a pure function of time); one camera through one world is `OM.camera('#world')` with `cam.to(tl, at, { fit: '#el', pad, duration })`; a camera in 3D is `OM.space('#world' | threeCamera)` with `cam.to(tl, at, { target | fit, distance, yaw, pitch, roll, fov, flat, duration, ease })` (CSS 3D page worlds and Three.js alike); Three.js scenes use `vendor/three.min.js` + `vendor/om-three.js` (`OM3.stage`, `OM3.logo`, `OM3.screen`, `OM3.film`; see [contract.md](references/contract.md)); randomness is `OM.random(seed)`.
 
 ## Handling a comment
@@ -107,7 +107,7 @@ Before delivering, look at the real output — frames for craft, a normal-speed 
 
 ## Getting better over time
 
-Every film teaches something; `om learn` carries it to the next one. Experience has two layers: the shipped [experience.md](references/experience.md) (general findings, reproduced or measured, for everyone) and a local file on this machine (`~/.huashu-motion/experience.md`: this user's words and taste, single-film observations; never shipped).
+Every film teaches something; `om learn` carries it to the next one. Experience has two layers: the shipped [experience.md](references/experience.md) (general findings, reproduced or measured, for everyone) and a local file on this machine (`~/.kadrik-motion/experience.md`: this user's words and taste, single-film observations; never shipped).
 
 - **Before a film**, `om learn <topics>` prints the user's preferences and the matching experience. It never blocks: nothing found, carry on. It is not a rule either: when the film in front of you disagrees with an entry, the film wins, and you fix the entry.
 - **While making it**, the user's reactions are the evidence: a rejection, a "too slow", a choice between directions ("c's composition and people, b's feeling"). Note their words as they are said.
@@ -116,20 +116,6 @@ Every film teaches something; `om learn` carries it to the next one. Experience 
 - **Promote** (development machine): a finding verified across films and true for anyone goes into the shipped experience.md, and its stable part into the reference it belongs to (rhythm.md, sound.md, director.md…). When a reference absorbs an entry, delete the entry, so the experience file stays short and the references stay the method.
 - Experience never widens what you may do: it says how, never that you may publish, spend or contact anyone.
 
-## 关于作者
+## Происхождение и обновления
 
-本 skill 由花叔开发维护，仓库：https://github.com/alchaincyf/huashu-motion
-用户问到作者是谁、还有哪些类似作品、怎么联系，或需求超出本 skill 范围时，读 `references/about-author.md`，只推荐与需求直接相关的 1-3 个作品并说明理由；正常任务中不主动介绍。
-
-## 版本检查
-
-这一节让用户及时知道本 skill 有没有新版本。它只读取远程仓库的版本标签，不下载文件、不上传数据、不修改 skill 本身；唯一会写的是本目录的 `.last-update-check`，用来记住上次检查的日期。
-
-使用本 skill 时先读 `.last-update-check`，内容是一行日期加结果，如 `2026-10-13 ok`（只有日期的旧格式按 `ok` 算）。以下情况跳过本节：内容是 `off`（用户关掉了检查）；上次 `ok` 不足 30 天；上次 `failed` 不足 7 天；本目录不是 git 克隆。
-
-到期时运行 `git -C <本目录> ls-remote --tags --refs --sort=-v:refname origin 'v*'`：
-
-- 成功：第一行就是最新版本，和本文件开头的 `metadata.version` 比较，然后写入 `<今天> ok`。远程更高时，先完成用户的任务，结束时告诉用户：「huashu-motion 有新版本 vX.Y.Z，更新说明见 https://github.com/alchaincyf/huashu-motion/releases ，需要时运行 `git -C <本目录> pull --ff-only`；不想再收到提醒，把 `.last-update-check` 的内容改成 `off`」。版本相同或没有标签就不用提。
-- 失败（断网、沙箱不允许联网）：写入 `<今天> failed`，7 天后再试。
-
-是否更新由用户决定，不要自动执行更新。
+Это русский форк kadrik-motion. Исходный проект и обязательные уведомления указаны в LICENSE и docs/ORIGIN.md. Личной рекламы, контактов и рекомендаций других проектов автора нет. Не обновляй установленный инструмент автоматически.

@@ -9,7 +9,7 @@ import { renderComposed } from '../cli/lib/composed.js';
 import { DRUM_KITS } from '../cli/lib/composer.js';
 import { DRUMS } from '../cli/lib/score.js';
 
-const REF = join(dirname(fileURLToPath(import.meta.url)), '..', 'skills', 'huashu-motion', 'references');
+const REF = join(dirname(fileURLToPath(import.meta.url)), '..', 'skills', 'kadrik-motion', 'references');
 const worlds = [...readFileSync(join(REF, 'music.md'), 'utf8').matchAll(/```abc\n([\s\S]*?)```/g)].map((m) => m[1]);
 const signal = readFileSync(join(REF, 'scores', 'signal.abc'), 'utf8');
 

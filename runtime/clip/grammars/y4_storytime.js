@@ -21,7 +21,7 @@ return {
   fonts: ['PuHui-Bold', 'PuHui-Black'],
   faces: ['PuHui-Bold', 'PuHui-Black'],
   safe: true,
-  // huashu-motion: one scene label per shot change; regions = the character, the computer, each speech bubble, the insert shot's parts
+  // kadrik-motion: one scene label per shot change; regions = the character, the computer, each speech bubble, the insert shot's parts
   scenes: ctx => CLIP.beats(ctx.cues, q => ({ point: 'talk', title: 'talk', insert: 'screen', react: 'react', highlight: 'punchline' })[q.kind] || null),
   regions: ctx => [{ id: 'character', label: '角色' }, { id: 'computer', label: '桌上的电脑' },
     ...ctx.of('point', 'title').map((q, i) => ({ id: CLIP.rid('line', i), label: `第 ${i + 1} 句的气泡` })),

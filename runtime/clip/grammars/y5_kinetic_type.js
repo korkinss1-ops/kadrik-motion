@@ -16,7 +16,7 @@ return {
   fonts: ['PuHui-Black', 'PuHui-Heavy', 'PuHui-Bold'],
   faces: ['PuHui-Black', 'PuHui-Heavy', 'PuHui-Bold'],
   safe: true,
-  // huashu-motion: one scene per page (a number page starts 0.7 s before it lands) plus the highlight; regions per page: word / sub / label
+  // kadrik-motion: one scene per page (a number page starts 0.7 s before it lands) plus the highlight; regions per page: word / sub / label
   scenes: ctx => CLIP.beats(ctx.cues, q => q.kind === 'title' ? 'title' : q.kind === 'point' ? 'item' : q.kind === 'number' ? 'number' : q.kind === 'highlight' ? 'highlight' : null)
     .map((s, i, a) => s.id.startsWith('number') ? { ...s, at: s.at - 0.7 } : s),
   regions: ctx => [...ctx.of('title', 'point', 'number').flatMap((q, i) => [{ id: CLIP.rid('word', i), label: `第 ${i + 1} 页主词` },

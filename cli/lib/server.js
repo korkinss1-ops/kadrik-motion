@@ -69,7 +69,7 @@ export function startStudio(project, { port = 4848, host = '127.0.0.1' } = {}) {
     req.on('end', () => { try { ok(chunks.length ? JSON.parse(Buffer.concat(chunks)) : {}); } catch { fail(new OmError('invalid JSON')); } });
   });
 
-  const serveFile = (res, file, inject) => {
+  const serveFile = (req, res, file, inject) => {
     if (!existsSync(file) || !statSync(file).isFile()) return send(res, 404, { error: 'not found' });
     if (inject) {
       // The preview gets the engine injected before the composition's own scripts, the way the renderer does it;
@@ -78,8 +78,30 @@ export function startStudio(project, { port = 4848, host = '127.0.0.1' } = {}) {
       html = injectRuntime(html, '/_om/engine.js');
       return send(res, 200, html, TYPES['.html']);
     }
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store' });
-    createReadStream(file).pipe(res);
+    const size = statSync(file).size;
+    const headers = { 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store', 'Accept-Ranges': 'bytes' };
+    let start = 0, end = size - 1, status = 200;
+    // Native media players request byte ranges for metadata and seeking. Sending
+    // the whole movie for each request can stall a multi-clip composition's load.
+    if (req.headers.range) {
+      const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+      if (range && (range[1] || range[2])) {
+        if (!range[1]) start = Math.max(0, size - Number(range[2]));
+        else { start = Number(range[1]); if (range[2]) end = Math.min(end, Number(range[2])); }
+      }
+      if (!range || (!range[1] && !range[2]) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= size || (!range[1] && Number(range[2]) === 0)) {
+        res.writeHead(416, { ...headers, 'Content-Range': `bytes */${size}`, 'Content-Length': 0 });
+        return res.end();
+      }
+      status = 206; headers['Content-Range'] = `bytes ${start}-${end}/${size}`;
+    }
+    headers['Content-Length'] = Math.max(0, end - start + 1);
+    res.writeHead(status, headers);
+    if (req.method === 'HEAD' || !size) return res.end();
+    const stream = createReadStream(file, { start, end });
+    res.on('close', () => stream.destroy());
+    stream.on('error', () => res.destroy());
+    stream.pipe(res);
   };
 
   const server = createServer(async (req, res) => {
@@ -125,13 +147,13 @@ export function startStudio(project, { port = 4848, host = '127.0.0.1' } = {}) {
         req.on('close', () => clients.delete(res));
         return;
       }
-      if (STATIC[path]) return serveFile(res, STATIC[path]);
-      if (path.startsWith('/_om/')) return serveFile(res, safeJoin(join(PKG, 'studio'), path.slice(5)));
-      if (path.startsWith('/out/')) return serveFile(res, safeJoin(project.root, path.slice(1)));
+      if (STATIC[path]) return serveFile(req, res, STATIC[path]);
+      if (path.startsWith('/_om/')) return serveFile(req, res, safeJoin(join(PKG, 'studio'), path.slice(5)));
+      if (path.startsWith('/out/')) return serveFile(req, res, safeJoin(project.root, path.slice(1)));
       if (path.startsWith('/p/')) {
         const rel = path.slice(3) || 'index.html';
         if (rel.startsWith('.om/')) throw new OmError('not served', 404);
-        return serveFile(res, safeJoin(project.root, rel), rel === 'index.html');
+        return serveFile(req, res, safeJoin(project.root, rel), rel === 'index.html');
       }
       throw new OmError('not found', 404);
     } catch (e) {

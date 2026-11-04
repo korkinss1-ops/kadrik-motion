@@ -52,7 +52,7 @@ return {
   fonts: ['PuHui-Medium'],
   faces: ['PuHui-Medium', 'CMU-rm', 'CMU-it', 'EBGaramond-400i'],
   safe: true,
-  // huashu-motion: one scene label per beat, and the things a viewer can point at (ids follow the spec's 0-based indexes)
+  // kadrik-motion: one scene label per beat, and the things a viewer can point at (ids follow the spec's 0-based indexes)
   scenes: ctx => CLIP.beats(ctx.cues, q => ({ title: 'title', equation: 'equation', line: 'curve', point: 'point', highlight: 'highlight' })[q.kind] || null),
   regions: ctx => [...ctx.of('title').map((q, i) => ({ id: i ? CLIP.rid('title', i) : 'title', label: i ? `第 ${i + 1} 个标题` : '标题' })),
     ...(ctx.of('equation').length ? [{ id: 'equation', label: '公式' }] : []), ...(ctx.of('line').length ? [{ id: 'curve', label: '曲线与坐标系' }] : []),

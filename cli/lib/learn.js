@@ -1,7 +1,7 @@
 // om learn — how the skill gets better with every film. Two layers of experience:
-//   shipped  skills/huashu-motion/references/experience.md — general findings, reproduced or measured,
+//   shipped  skills/kadrik-motion/references/experience.md — general findings, reproduced or measured,
 //            shipped to everyone with the package (edited in the repository, not by this command);
-//   local    ~/.huashu-motion/experience.md (OM_HOME to move it) — this machine's user: their words,
+//   local    ~/.kadrik-motion/experience.md (OM_HOME to move it) — this machine's user: their words,
 //            their taste, and single-film observations that are not proven yet. Never shipped.
 // `om learn [topics…]` reads both before a film, `om learn harvest <dir>` gathers what a finished project
 // can teach, `om learn add` writes one entry and refuses one without a kind, topics and evidence.
@@ -18,8 +18,8 @@ export const KINDS = {
   verified: 'reproduced in two or more films, or measured — the shipped experience.md is where general ones end up',
   superseded: 'no longer true — keep the entry and say what replaced it',
 };
-const SHIPPED = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'skills', 'huashu-motion', 'references', 'experience.md');
-export const localFile = () => join(process.env.OM_HOME || join(homedir(), '.huashu-motion'), 'experience.md');
+const SHIPPED = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'skills', 'kadrik-motion', 'references', 'experience.md');
+export const localFile = () => join(process.env.OM_HOME || join(homedir(), '.kadrik-motion'), 'experience.md');
 const HEAD = `# Local experience\n\nWhat this machine's films taught. Written by \`om learn add\` (or edited by hand: fix an entry in place\nwhen it turns out wrong, set its kind to superseded and say why). Not shipped with the package.\n`;
 
 // entries of a markdown file: each "## …" heading and its body

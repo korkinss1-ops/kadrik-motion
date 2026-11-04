@@ -1,5 +1,5 @@
 // A project is a folder whose index.html is a composition (docs/CONTRACT.md) — the only source of truth.
-// Everything huashu-motion keeps on the side (history, inbox) lives in .om/ and can be deleted safely.
+// Everything kadrik-motion keeps on the side (history, inbox) lives in .om/ and can be deleted safely.
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';

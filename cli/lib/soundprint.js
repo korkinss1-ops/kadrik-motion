@@ -9,8 +9,8 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseAbc } from './composer.js';
 
-const CASES = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'skills', 'huashu-motion', 'references', 'scores');
-export const historyFile = () => join(process.env.OM_HOME || join(homedir(), '.huashu-motion'), 'soundtracks.jsonl');
+const CASES = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'skills', 'kadrik-motion', 'references', 'scores');
+export const historyFile = () => join(process.env.OM_HOME || join(homedir(), '.kadrik-motion'), 'soundtracks.jsonl');
 
 // tempo (first Q:), key (K:), meter, and the band: each voice's instrument (drum voices by kit)
 export function soundprint(text) {

@@ -5,7 +5,7 @@ import {
   sentenceSpans, alignChars, charTimes, asrChars, captionLines, toSrt, cueTerms, missingCues, applyVoice, pickVoice,
 } from '../cli/lib/voice.js';
 
-const SCRIPT = 'huashu-motion，一句话出片。你只要说出想法，Agent就把画面做出来。\n哪里不满意，指着画面改，它当场重做！改完一键导出，配音和字幕都对齐。';
+const SCRIPT = 'kadrik-motion，一句话出片。你只要说出想法，Agent就把画面做出来。\n哪里不满意，指着画面改，它当场重做！改完一键导出，配音和字幕都对齐。';
 
 const monotonic = (words, from, to) => {
   let last = from;
@@ -19,14 +19,14 @@ const monotonic = (words, from, to) => {
 
 test('splitSentences cuts at 。！？；, newlines and English full stops, keeps punctuation', () => {
   assert.deepEqual(splitSentences(SCRIPT), [
-    'huashu-motion，一句话出片。', '你只要说出想法，Agent就把画面做出来。', '哪里不满意，指着画面改，它当场重做！', '改完一键导出，配音和字幕都对齐。',
+    'kadrik-motion，一句话出片。', '你只要说出想法，Agent就把画面做出来。', '哪里不满意，指着画面改，它当场重做！', '改完一键导出，配音和字幕都对齐。',
   ]);
   assert.deepEqual(splitSentences('It costs 3.5 dollars. Fine?\n“好。”然后\n\n。'), ['It costs 3.5 dollars.', 'Fine?', '“好。”', '然后']);
 });
 
 test('tokenize keeps Latin runs and cue terms whole, words are Intl.Segmenter words', () => {
   const words = (s, keep) => tokenize(s, keep).filter((t) => t.word).map((t) => t.text);
-  assert.deepEqual(words('huashu-motion，一句话出片。', ['一句话']), ['huashu-motion', '一句话', '出', '片']);
+  assert.deepEqual(words('kadrik-motion，一句话出片。', ['一句话']), ['kadrik-motion', '一句话', '出', '片']);
   assert.ok(words('把 GPT-5 的成本降低 30%，只要 3.5 秒').includes('GPT-5'));
   assert.ok(words('把 GPT-5 的成本降低 30%，只要 3.5 秒').includes('3.5'));
   // ICU splits 缓存命中 as 缓|存命|中; a cue term repairs it.
@@ -53,9 +53,9 @@ test('placeWords: monotonic, inside the spans, never inside a silence, last word
 });
 
 test('placeSentence snaps a comma onto the pause inside the sentence', () => {
-  const placed = placeSentence(tokenize('huashu-motion，一句话出片。', ['一句话']), [[0, 1], [1.4, 2]]);
+  const placed = placeSentence(tokenize('kadrik-motion，一句话出片。', ['一句话']), [[0, 1], [1.4, 2]]);
   const by = Object.fromEntries(placed.filter((t) => t.word).map((t) => [t.text, t]));
-  assert.equal(by['huashu-motion'].end, 1);
+  assert.equal(by['kadrik-motion'].end, 1);
   assert.equal(by['一句话'].start, 1.4);
   assert.equal(by['片'].end, 2);
 });
@@ -99,7 +99,7 @@ test('asrChars reads whisper.cpp full JSON and skips special tokens', () => {
 });
 
 test('captions: ≤16 visible characters, cut at commas, never across sentences', () => {
-  const long = 'huashu-motion的编辑器会把你指着的那个对象、所在的分镜和当前时间一起发给Agent，它改完之后画面会自动刷新。';
+  const long = 'kadrik-motion的编辑器会把你指着的那个对象、所在的分镜和当前时间一起发给Agent，它改完之后画面会自动刷新。';
   const sentences = splitSentences(SCRIPT + long).map((s, i) => ({ text: s, tokens: placeSentence(tokenize(s), [[i * 5, i * 5 + 4]]) }));
   const lines = sentences.flatMap((s) => captionLines(s, 16));
   for (const l of lines) {
@@ -185,7 +185,7 @@ test('wordsOf flattens timed words across sentences, in order', () => {
   const sentences = splitSentences(SCRIPT).map((s, i) => ({ text: s, tokens: placeSentence(tokenize(s), [[i * 3, i * 3 + 2.5]]) }));
   const words = wordsOf(sentences);
   monotonic(words, 0, 11.5);
-  assert.equal(words[0].word, 'huashu-motion');
+  assert.equal(words[0].word, 'kadrik-motion');
 });
 
 test('applyVoice never adds a data-duration to a root that has none (length follows the timeline)', () => {

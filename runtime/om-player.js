@@ -1,4 +1,4 @@
-// <om-player src="film/index.html"> — plays a huashu-motion composition in a page: the studio, an exported
+// <om-player src="film/index.html"> — plays a kadrik-motion composition in a page: the studio, an exported
 // share page, the website. The film runs in an iframe with runtime/om-engine.js injected (video: 'live'),
 // scaled to fit, and is driven from here: every animation frame seeks the timelines to the clock, footage
 // and the soundtrack play natively and are pulled back if they drift. Paused, it shows exactly frame t —
@@ -127,7 +127,7 @@ iframe { display: block; border: 0; background: transparent; }
           return;
         }
         if (win.__omBootFailed) return this._fail(`the film did not start: ${win.__omBootFailed}`);
-        if (!win.__omEngine && performance.now() - t0 > 3000) return this._fail('this page has no huashu-motion engine (runtime/om-engine.js) — open it through om studio or om export');
+        if (!win.__omEngine && performance.now() - t0 > 3000) return this._fail('this page has no kadrik-motion engine (runtime/om-engine.js) — open it through om studio or om export');
         if (performance.now() - t0 > 60000) return this._fail('the film did not become ready within a minute');
         setTimeout(poll, 30);
       };

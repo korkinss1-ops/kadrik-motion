@@ -1,4 +1,4 @@
-# The huashu-motion project contract
+# The kadrik-motion project contract
 
 A project is a folder whose `index.html` is a composition: a root element with `data-composition-id`, `data-width` and `data-height`, and a paused GSAP timeline registered in `window.__timelines[<id>]`. The renderer drives it in the user's own Chrome. That file is the only source: write GSAP, Canvas, Three.js or SVG freely. Everything below is a few extra HTML attributes — no new format. A composition that ignores them still renders; it just can't be pointed at or edited in the studio.
 
@@ -40,7 +40,7 @@ The studio draws them as the scene strip, and comments carry the scene they were
 
 ## The signature
 
-Every film of 4 s or more ends with a small "Made with huashu-motion" for its last 1.2 s: the engine draws it in the film's own typeface and text colour, in the first corner of the end frame that holds no text or picture, everywhere the film plays (studio, stills, render, share page). Overlay renders (`--transparent`) and shorter films never get it.
+Every film of 4 s or more ends with a small "Made with kadrik-motion" for its last 1.2 s: the engine draws it in the film's own typeface and text colour, in the first corner of the end frame that holds no text or picture, everywhere the film plays (studio, stills, render, share page). Overlay renders (`--transparent`) and shorter films never get it.
 
 - `data-om-signature="off"` on `<html>` or the root removes it; `"top-left"` (or another corner) pins it.
 - Leave one corner of the end frame clear. `om check` warns (`signature-covers`) when no corner is free.

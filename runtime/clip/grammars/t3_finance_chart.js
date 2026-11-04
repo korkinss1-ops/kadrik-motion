@@ -16,7 +16,7 @@ return {
   fonts: ['PuHui-Medium', 'PuHui-Bold'],
   faces: ['PuHui-Medium', 'PuHui-Bold', 'RobotoCondensed'],
   safe: true,
-  // huashu-motion: one scene label per beat, and the things a viewer can point at (ids follow the spec's 0-based indexes)
+  // kadrik-motion: one scene label per beat, and the things a viewer can point at (ids follow the spec's 0-based indexes)
   scenes: ctx => CLIP.beats(ctx.cues, q => q.kind === 'title' ? 'title' : ['bar', 'line', 'candle'].includes(q.kind) ? 'chart' : ['highlight', 'number'].includes(q.kind) ? q.kind : null),
   regions(ctx) {
     const d = ctx.data, S = d.series || [], kind = (ctx.of('bar', 'line', 'candle')[0] || {}).kind || d.chart || 'bar';

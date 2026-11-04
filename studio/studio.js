@@ -1,5 +1,5 @@
 import { createSaveQueue } from './save-queue.js';
-// huashu-motion studio. One page, no build step: the om player shows the real composition,
+// kadrik-motion studio. One page, no build step: the om player shows the real composition,
 // this file adds pointing, direct edits and the comment loop around it.
 const BOOT = window.OM_BOOT || {};
 const $ = (s) => document.querySelector(s);
@@ -43,7 +43,7 @@ async function boot() {
   Object.assign(S, { token: st.token, variables: st.variables, comments: st.comments, history: st.history, name: st.name, renderJob: st.render });
   if (st.scan.width) { S.w = st.scan.width; S.h = st.scan.height; }
   $('#project-name').textContent = st.name;
-  document.title = `${st.name} · huashu-motion`;
+  document.title = `${st.name} · Кадрик`;
   $('#agent-cmd').textContent = 'om inbox --wait';
   layout();
   loadPlayer();
